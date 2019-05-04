@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { AppRegistry, StyleSheet, Text, View, FlatList, Alert, TextInput } from "react-native";
 
+import {Header, Left, Body, Button, Icon, Right, Title} from "native-base";
+
 import { StackNavigator } from "react-navigation";
 
 export default class HomeScreen extends Component {
@@ -9,7 +11,7 @@ export default class HomeScreen extends Component {
       backgroundColor: "#D95D39",
       elevation: null
     },
-    headerLeft: null
+    header: null
   };
 
   constructor(props){
@@ -40,12 +42,17 @@ export default class HomeScreen extends Component {
 
   render() {
     return (
-      <View style={{flex: 1, paddingTop:20}}>
+      <View style={{flex: 1}}>
+        <Header>
+          <Body>
+            <Title>Quiz</Title>
+          </Body>
+        </Header>
 
         <FlatList
           data={this.state.dataSource}
           renderItem={({item}) => <Text>{item.title}</Text>}
-          keyExtractor={({id}, index) => "a" + index}
+          keyExtractor={({id}, index) => "ID" + index}
         />
       </View>
     );

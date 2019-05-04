@@ -42,7 +42,7 @@ const App = createStackNavigator({
   HomeScreen: {
     screen: HomeScreen,
     navigationOptions: {
-        header: null,
+        title: "HomeScreen"
       },
   },
   Login: {
