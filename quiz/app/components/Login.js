@@ -40,14 +40,14 @@ export default class Login extends Component {
     await AsyncStorage.setItem("email", email);
     await AsyncStorage.setItem("password", password);
 
-    if (email == CorrectEmail && password == CorrectPassword) {
+    //if (email == CorrectEmail && password == CorrectPassword) {
       this.props.navigation.navigate("HomeScreen");
-
+/*
     } else {
       Alert.alert(
          "E-mail ou senha estão incorretos!"
       )
-    }
+    }*/
   }
 
   render() {
