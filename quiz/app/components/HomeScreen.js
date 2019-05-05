@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { AppRegistry, StyleSheet, Text, View, FlatList, Alert, TextInput } from "react-native";
 
-import {Header, Left, Body, Button, Icon, Right, Title} from "native-base";
+import {Header, Left, Body, Button, Icon, Right, Title, Card, CardItem, Badge} from "native-base";
 
 import { StackNavigator } from "react-navigation";
+
+import Question from "./Question";
 
 export default class HomeScreen extends Component {
   static navigationOptions = {
@@ -20,7 +22,7 @@ export default class HomeScreen extends Component {
   }
 
   componentDidMount(){
-    return fetch('https://gist.githubusercontent.com/vieiraeduardos/3be38803c48bb92ca3cd88ff5c85131e/raw/d8edd8abd57d3add93f47064ac9cf187da849aef/test.json')
+    return fetch('https://gist.githubusercontent.com/vieiraeduardos/3be38803c48bb92ca3cd88ff5c85131e/raw/e0d418aa314b1e7e32016f2431b09f98f0db9cdf/test.json')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -51,8 +53,8 @@ export default class HomeScreen extends Component {
 
         <FlatList
           data={this.state.dataSource}
-          renderItem={({item}) => <Text>{item.title}</Text>}
-          keyExtractor={({id}, index) => "ID" + index}
+          renderItem={ ({item}) => <Question question={item} /> }
+          keyExtractor={ ({id}, index) => "ID" + index }
         />
       </View>
     );
