@@ -5,6 +5,9 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 import Login from "./app/components/Login";
 import HomeScreen from "./app/components/HomeScreen";
+import QRCodeReader from "./app/components/QRCodeReader";
+import Test from "./app/components/Test";
+
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -49,6 +52,18 @@ const App = createStackNavigator({
     screen: Login,
     navigationOptions: {
       title: "Login"
+    }
+  },
+  QRCodeReader: {
+    screen: QRCodeReader,
+    navigationOptions: {
+      title: "Leitor de QR Code"
+    }
+  },
+  Test: {
+    screen: Test,
+    navigationOptions: {
+      title: "Teste"
     }
   },
 });
