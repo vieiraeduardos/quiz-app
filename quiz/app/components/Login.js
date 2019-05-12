@@ -4,13 +4,14 @@ import {
   AppRegistry,
   KeyboardAvoidingView,
   TouchableOpacity,
-  AsyncStorage,
   Image,
   TextInput,
   StyleSheet,
   Text,
   View
 } from "react-native";
+
+import AsyncStorage from '@react-native-community/async-storage';
 
 import { StackNavigator } from "react-navigation";
 
@@ -19,7 +20,8 @@ export default class Login extends Component {
     super();
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      logging: "false"
     };
   }
 
@@ -40,14 +42,16 @@ export default class Login extends Component {
     await AsyncStorage.setItem("email", email);
     await AsyncStorage.setItem("password", password);
 
-    //if (email == CorrectEmail && password == CorrectPassword) {
+    if (email == CorrectEmail && password == CorrectPassword) {
+      await AsyncStorage.setItem("logging", "true");
+
       this.props.navigation.navigate("HomeScreen");
-/*
+
     } else {
       Alert.alert(
          "E-mail ou senha estão incorretos!"
       )
-    }*/
+    }
   }
 
   render() {
@@ -113,9 +117,10 @@ const styles = StyleSheet.create({
   subtext: {
     color: "black",
     marginTop: 10,
-    width: 160,
+    width: 200,
     textAlign: "center",
-    opacity: 0.8
+    opacity: 0.8,
+    fontSize: 50
   },
   keyboard: {
     margin: 20,
