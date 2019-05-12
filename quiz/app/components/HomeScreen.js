@@ -34,9 +34,9 @@ export default class HomeScreen extends Component {
   render() {
     return (
       <Container>
-        <Header hasTabs style={{ backgroundColor: "#3c8dbc"}}>
+        <Header hasTabs androidStatusBarColor="#3c8dbc" style={{ backgroundColor: "#3c8dbc"}}>
           <Left>
-            <Image style={{ width: 30, height: 30}} source={require("./idea.png")} />
+            <Image style={{ width: 30, height: 30}} source={require("./logo.png")} />
           </Left>
           <Body>
             <Title>Quiz</Title>
