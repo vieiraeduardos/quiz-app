@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, StatusBar} from 'react-native';
+import {Platform, StyleSheet, Text, View, StatusBar, Alert} from 'react-native';
+
+import AsyncStorage from '@react-native-community/async-storage';
 
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
@@ -18,20 +20,48 @@ const instructions = Platform.select({
 
 
 class Home extends Component<{}> {
+
+  constructor() {
+    super();
+
+    logging = "false";
+  }
+
+  componentDidMount() {
+    logging: this.retrieveData();
+  }
+
   static navigationOptions = {
     headerStyle: {
-      backgroundColor: "#D95D39",
+      backgroundColor: "#3c8dbc",
       elevation: null
     },
     header: null
   };
+
+  async retrieveData() {
+    const value = await AsyncStorage.getItem('logging');
+
+    return value
+  };
+
   render() {
-    return (
-      <View style={styles.container}>
-        <StatusBar barStyle="light-content" backgroundColor="#D95D39" />
-        <Login navigation={this.props.navigation} />
-      </View>
-    );
+
+    if(logging == "true") {
+      return (
+        <View style={styles.container}>
+          <StatusBar barStyle="light-content" backgroundColor="#3c8dbc" />
+          <Login navigation={this.props.navigation} />
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.container}>
+          <StatusBar barStyle="light-content" backgroundColor="#3c8dbc" />
+          <HomeScreen navigation={this.props.navigation} />
+        </View>
+      );
+    }
   }
 }
 
