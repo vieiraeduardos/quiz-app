@@ -58,7 +58,7 @@ class Home extends Component<{}> {
       return (
         <View style={styles.container}>
           <StatusBar barStyle="light-content" backgroundColor="#3c8dbc" />
-          <HomeScreen navigation={this.props.navigation} />
+          <Test navigation={this.props.navigation} />
         </View>
       );
     }
@@ -85,16 +85,10 @@ const App = createStackNavigator({
     }
   },
   QRCodeReader: {
-    screen: QRCodeReader,
-    navigationOptions: {
-      title: "Leitor de QR Code"
-    }
+    screen: QRCodeReader
   },
   Test: {
-    screen: Test,
-    navigationOptions: {
-      title: "Teste"
-    }
+    screen: Test
   },
 });
 
