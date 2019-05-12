@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { AppRegistry, StyleSheet, Text, Button, View, FlatList, Alert, TextInput, TouchableOpacity, Linking, ScrollView } from "react-native";
+import { AppRegistry, StyleSheet, Image, View, FlatList, Alert, TextInput, TouchableOpacity, Linking, ScrollView } from "react-native";
 
-import {Header, Left, Body, Icon, Right, Title, Card, CardItem, Badge } from "native-base";
+import {Header, Container, Left, Text,  Body, Icon, Button, Right, Title, Card, CardItem, Badge } from "native-base";
 
 import { StackNavigator } from "react-navigation";
 
@@ -9,11 +9,16 @@ import Question from "./Question";
 
 export default class Test extends Component {
   static navigationOptions = {
+    title: 'Voltar',
     headerStyle: {
-      backgroundColor: "#D95D39",
-      elevation: null
+      backgroundColor: "#3c8dbc",
+      elevation: null,
+      color: "#fff"
     },
-    header: null
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
   };
 
   constructor(props){
@@ -44,20 +49,43 @@ export default class Test extends Component {
 
   render() {
     return (
-      <ScrollView>
-        <Header>
+      <Container>
+        <Header hasTabs androidStatusBarColor="#3c8dbc" style={{ backgroundColor: "#3c8dbc"}}>
+          <Left>
+            <Button
+              transparent
+              onPress={() => {
+                this.props.navigation.navigate("HomeScreen");
+              }}
+
+            >
+              <Icon type="MaterialIcons" name="arrow-back" />
+            </Button>
+          </Left>
           <Body>
-            <Title>Quiz</Title>
+            <Title>Voltar</Title>
           </Body>
         </Header>
 
-        <FlatList
-          data={this.state.dataSource}
-          renderItem={ ({item}) => <Question question={item} /> }
-          keyExtractor={ ({id}, index) => "ID" + index }
-        />
+        <ScrollView>
 
-      </ScrollView>
+          <FlatList
+            data={this.state.dataSource}
+            renderItem={ ({item}) => <Question question={item} /> }
+            keyExtractor={ ({id}, index) => "ID" + index }
+          />
+
+
+          <Button block success style={{ margin: 10, marginLeft: 40, marginRight: 40}}
+            onPress={() => {
+              this.props.navigation.navigate("QRCodeReader");
+            }}
+            >
+            <Text>Finalizar</Text>
+          </Button>
+
+        </ScrollView>
+      </Container>
     );
   }
 
