@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { AppRegistry, StyleSheet, Text, Button, View, FlatList, Alert, TextInput, TouchableOpacity, Linking, ScrollView } from "react-native";
+import { AppRegistry, StyleSheet, Image, View, FlatList, Alert, TextInput, TouchableOpacity, Linking, ScrollView } from "react-native";
 
-import {Header, Left, Body, Icon, Right, Title, Card, CardItem, Badge } from "native-base";
+import {Header, Left, Body, TabHeading, Text, Container, Icon, Tabs, Tab, Right, Button, Title, Card, CardItem, Badge } from "native-base";
+
+import AsyncStorage from '@react-native-community/async-storage';
 
 import { StackNavigator } from "react-navigation";
 
@@ -10,7 +12,7 @@ import Question from "./Question";
 export default class HomeScreen extends Component {
   static navigationOptions = {
     headerStyle: {
-      backgroundColor: "#D95D39",
+      backgroundColor: "#3c8dbc",
       elevation: null
     },
     header: null
@@ -18,93 +20,59 @@ export default class HomeScreen extends Component {
 
   constructor(props){
     super(props);
-    this.state ={ dataSource: []}
+  }
+
+  async sair() {
+    await AsyncStorage.setItem("email", "eduardo@gmail.com");
+    await AsyncStorage.setItem("logging", "false");
+
+    this.props.navigation.navigate("Login");
+
   }
 
 
   render() {
     return (
-      <ScrollView>
-        <Header style={styles.header}>
+      <Container>
+        <Header hasTabs style={{ backgroundColor: "#3c8dbc"}}>
+          <Left>
+            <Image style={{ width: 30, height: 30}} source={require("./idea.png")} />
+          </Left>
           <Body>
             <Title>Quiz</Title>
           </Body>
+          <Right>
+            <Button
+              transparent
+              onPress={this.sair.bind(this)}
+            >
+              <Icon type="MaterialIcons" name="exit-to-app" />
+            </Button>
+          </Right>
         </Header>
 
-      <View style={styles.container}>
-        <Button
-          style={styles.buttonText}
-          onPress={() => {
-            this.props.navigation.navigate("QRCodeReader");
-          }}
-          title="Ler QR Code"
-          >
-        </Button>
+        <Tabs>
+          <Tab heading={ <TabHeading style={{ backgroundColor: "#3c8dbc" }} ><Icon type="MaterialIcons" name="home" /><Text>Início</Text></TabHeading>}>
+            <ScrollView>
+              <Button block success style={{ margin: 10, marginLeft: 40, marginRight: 40}}
+                onPress={() => {
+                  this.props.navigation.navigate("QRCodeReader");
+                }}
+                >
+                <Text>Ler QR Code</Text>
+              </Button>
+            </ScrollView>
+          </Tab>
+          <Tab heading={ <TabHeading style={{ backgroundColor: "#3c8dbc" }}><Icon type="Ionicons" name="ios-paper" /><Text>Testes</Text></TabHeading>}>
+            <ScrollView></ScrollView>
+          </Tab>
 
-        <Button
-          style={styles.buttonText}
-          onPress={() => {
-            this.props.navigation.navigate("Test");
-          }}
-          title="Ver Teste"
-          >
-        </Button>
-      </View>
-      </ScrollView>
+        </Tabs>
+
+      </Container>
     );
   }
 
 }
-
-const styles = StyleSheet.create({
-  header: {
-    backgroundColor: "#D95D39"
-
-  },
-  container: {
-    flex: 1,
-    backgroundColor: "white"
-  },
-  logoContainer: {
-    alignItems: "center",
-    flexGrow: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  logo: {
-    width: 200,
-    height: 200
-  },
-  subtext: {
-    color: "black",
-    marginTop: 10,
-    width: 160,
-    textAlign: "center",
-    opacity: 0.8
-  },
-  keyboard: {
-    margin: 20,
-    padding: 20,
-    alignSelf: "stretch"
-  },
-  buttonContainer: {
-    width: '70%',
-    justifyContent: 'center',
-    alignItems: 'center'
-
-  },
-  buttonText: {
-    backgroundColor: 'blue',
-    color: 'white'
-  },
-  button: {
-    backgroundColor: "#3c8dbc",
-    paddingVertical: 15
-  },
-  window: {
-    marginBottom: 15
-  }
-});
-
 
 AppRegistry.registerComponent("HomeScreen", () => HomeScreen);
