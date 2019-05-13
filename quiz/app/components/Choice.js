@@ -12,7 +12,7 @@ export default class Choice extends Component<{}> {
           <Text>{ this.props.choice }</Text>
         </Left>
         <Right>
-          <Radio selected={false} />
+          <Radio selected="true"/>
         </Right>
       </ListItem>
     );

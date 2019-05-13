@@ -27,7 +27,7 @@ export default class Test extends Component {
   }
 
   componentDidMount(){
-    return fetch('https://gist.githubusercontent.com/vieiraeduardos/3be38803c48bb92ca3cd88ff5c85131e/raw/e0d418aa314b1e7e32016f2431b09f98f0db9cdf/test.json')
+    return fetch('https://gist.githubusercontent.com/vieiraeduardos/3be38803c48bb92ca3cd88ff5c85131e/raw/f65f8a9c989277085cde934e8d4a454308e890b5/test.json')
       .then((response) => response.json())
       .then((responseJson) => {
 
