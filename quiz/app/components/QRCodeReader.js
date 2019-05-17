@@ -19,7 +19,7 @@ export default class QRCodeReader extends Component {
   static navigationOptions = {
     title: 'Voltar',
     headerStyle: {
-      backgroundColor: "#3c8dbc",
+      backgroundColor: "#1e88e5",
       elevation: null,
       color: "#fff"
     },
@@ -30,7 +30,7 @@ export default class QRCodeReader extends Component {
   };
 
   onSuccess(e) {
-    this.props.navigation.navigate("Test");
+    this.props.navigation.navigate("Presentation");
   }
 
   render() {

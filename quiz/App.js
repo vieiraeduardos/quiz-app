@@ -9,6 +9,7 @@ import Login from "./app/components/Login";
 import HomeScreen from "./app/components/HomeScreen";
 import QRCodeReader from "./app/components/QRCodeReader";
 import Test from "./app/components/Test";
+import Presentation from "./app/components/Presentation";
 
 
 const instructions = Platform.select({
@@ -33,7 +34,7 @@ class Home extends Component<{}> {
 
   static navigationOptions = {
     headerStyle: {
-      backgroundColor: "#3c8dbc",
+      backgroundColor: "#1e88e5",
       elevation: null
     },
     header: null
@@ -50,15 +51,15 @@ class Home extends Component<{}> {
     if(logging == "true") {
       return (
         <View style={styles.container}>
-          <StatusBar barStyle="light-content" backgroundColor="#3c8dbc" />
+          <StatusBar barStyle="light-content" backgroundColor="#1e88e5" />
           <Login navigation={this.props.navigation} />
         </View>
       );
     } else {
       return (
         <View style={styles.container}>
-          <StatusBar barStyle="light-content" backgroundColor="#3c8dbc" />
-          <Test navigation={this.props.navigation} />
+          <StatusBar barStyle="light-content" backgroundColor="#1e88e5" />
+          <HomeScreen navigation={this.props.navigation} />
         </View>
       );
     }
@@ -76,6 +77,12 @@ const App = createStackNavigator({
     screen: HomeScreen,
     navigationOptions: {
         title: "HomeScreen"
+      },
+  },
+  Presentation: {
+    screen: Presentation,
+    navigationOptions: {
+        title: "Presentation"
       },
   },
   Login: {

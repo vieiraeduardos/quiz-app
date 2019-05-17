@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 import { StackNavigator } from "react-navigation";
 
-import Question from "./Question";
+import Helps from "./Helps";
 
 export default class HomeScreen extends Component {
   static navigationOptions = {
@@ -34,7 +34,7 @@ export default class HomeScreen extends Component {
   render() {
     return (
       <Container>
-        <Header hasTabs androidStatusBarColor="#3c8dbc" style={{ backgroundColor: "#3c8dbc"}}>
+        <Header hasTabs androidStatusBarColor="#1e88e5" style={{ backgroundColor: "#1e88e5"}}>
           <Left>
             <Image style={{ width: 30, height: 30}} source={require("./logo.png")} />
           </Left>
@@ -52,19 +52,20 @@ export default class HomeScreen extends Component {
         </Header>
 
         <Tabs>
-          <Tab heading={ <TabHeading style={{ backgroundColor: "#3c8dbc" }} ><Icon type="MaterialIcons" name="home" /><Text>Início</Text></TabHeading>}>
+          <Tab heading={ <TabHeading style={{ backgroundColor: "#1e88e5" }} ><Icon type="MaterialIcons" name="home" /><Text>Início</Text></TabHeading>}>
             <ScrollView>
               <Button block success style={{ margin: 10, marginLeft: 40, marginRight: 40}}
                 onPress={() => {
                   this.props.navigation.navigate("QRCodeReader");
                 }}
                 >
+                <Icon type="MaterialCommunityIcons" name="qrcode-scan" />
                 <Text>Ler QR Code</Text>
               </Button>
             </ScrollView>
           </Tab>
-          <Tab heading={ <TabHeading style={{ backgroundColor: "#3c8dbc" }}><Icon type="Ionicons" name="ios-paper" /><Text>Testes</Text></TabHeading>}>
-            <ScrollView></ScrollView>
+          <Tab heading={ <TabHeading style={{ backgroundColor: "#1e88e5" }}><Icon type="Ionicons" name="ios-paper" /><Text>Testes</Text></TabHeading>}>
+            <Helps />
           </Tab>
 
         </Tabs>
